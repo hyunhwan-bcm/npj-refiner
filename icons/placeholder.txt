@@ -1,0 +1,11 @@
+Icon files needed:
+- icon16.png (16x16 pixels)
+- icon48.png (48x48 pixels)
+- icon128.png (128x128 pixels)
+
+You can create simple icons using any image editor, or the extension will work without icons (Chrome will show a default icon).
+
+For a quick solution, you can:
+1. Use an online icon generator
+2. Create a simple colored square with text "SN" (Springer Nature)
+3. Or remove the "icons" section from manifest.json temporarily

@@ -1,0 +1,9 @@
+# Claude Code metadata
+.claude/
+
+# macOS
+.DS_Store
+
+# Chrome extension packaging
+*.crx
+*.pem

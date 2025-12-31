@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Springer Nature Image Enhancer",
+  "version": "1.0.0",
+  "description": "Improves image quality on Springer Nature websites by loading high-resolution versions",
+  "permissions": [],
+  "host_permissions": [
+    "https://www.nature.com/*",
+    "https://*.nature.com/*",
+    "https://*.springernature.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.nature.com/*",
+        "https://*.nature.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
