@@ -151,7 +151,7 @@
       subtree: true
     });
 
-    console.log('Springer Nature Image Enhancer: Image processing active');
+    console.log('npj refiner: Image processing active');
   }
 
   // Wait for DOM to be ready before processing images
@@ -162,5 +162,79 @@
     initImageProcessing();
   }
 
-  console.log('Springer Nature Image Enhancer: Active');
+  // Function to load and display full tables inline
+  async function loadFullTable(tableLink) {
+    try {
+      const tableUrl = tableLink.href;
+      const tableNumber = tableUrl.match(/tables\/(\d+)/)[1];
+
+      console.log(`Loading full table ${tableNumber} from ${tableUrl}`);
+
+      // Fetch the full table page
+      const response = await fetch(tableUrl);
+      const html = await response.text();
+
+      // Parse the HTML
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+
+      // Find the full table content
+      const fullTable = doc.querySelector('table') || doc.querySelector('.c-article-table');
+
+      if (!fullTable) {
+        console.warn(`Could not find table content in ${tableUrl}`);
+        return;
+      }
+
+      // Find the container to replace (the figure or div containing the link)
+      const container = tableLink.closest('figure, div.c-article-table-container, div[data-component="table"]');
+
+      if (!container) {
+        console.warn('Could not find table container');
+        return;
+      }
+
+      // Replace the summary table with the full table
+      const fullTableClone = fullTable.cloneNode(true);
+
+      // Find and replace the existing table in the container
+      const existingTable = container.querySelector('table');
+      if (existingTable) {
+        existingTable.replaceWith(fullTableClone);
+      } else {
+        // If no table exists, insert before the link
+        tableLink.parentElement.insertBefore(fullTableClone, tableLink);
+      }
+
+      // Keep the "Full size table" button visible for users who want to open in new tab
+
+      console.log(`Successfully loaded full table ${tableNumber}`);
+    } catch (error) {
+      console.error('Error loading full table:', error);
+    }
+  }
+
+  // Function to process all table links
+  function processTableLinks() {
+    const tableLinks = document.querySelectorAll('a[data-test="table-link"]');
+    console.log(`Found ${tableLinks.length} table links to expand`);
+
+    tableLinks.forEach(link => {
+      loadFullTable(link);
+    });
+  }
+
+  // Wait for DOM and then process tables
+  function initTableExpansion() {
+    // Process tables after a short delay to ensure page is fully loaded
+    setTimeout(processTableLinks, 1000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTableExpansion);
+  } else {
+    initTableExpansion();
+  }
+
+  console.log('npj refiner: Active');
 })();

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Springer Nature Image Enhancer",
+  "name": "npj refiner",
   "version": "1.0.0",
-  "description": "Improves image quality on Springer Nature websites by loading high-resolution versions",
+  "description": "Enhances Springer Nature: high-res images, HTML-CSS math rendering, and auto-expanded tables",
   "permissions": [],
   "host_permissions": [
     "https://www.nature.com/*",
