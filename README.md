@@ -2,8 +2,7 @@
 
 A Chrome extension that improves readability on Springer Nature websites with three key enhancements:
 1. **High-resolution images** - Automatically loads full-quality images
-2. **Better math rendering** - Forces MathJax to use HTML-CSS renderer
-3. **Expanded tables** - Shows full tables inline without clicking "Full size table"
+2. **Expanded tables** - Shows full tables inline without clicking "Full size table"
 
 ## Problems & Solutions
 
@@ -18,12 +17,7 @@ https://media.springernature.com/lw685/springer-static/image/...
 https://media.springernature.com/full/springer-static/image/...
 ```
 
-### 2. Poor Math Rendering
-**Problem:** MathJax defaults to "PlainSource" renderer (plain text)
-
-**Solution:** Forces HTML-CSS renderer for high-quality equation display
-
-### 3. Truncated Tables
+### 2. Truncated Tables
 **Problem:** Tables show only summaries, requiring clicks to see full data
 
 **Solution:** Automatically fetches and displays full tables inline
